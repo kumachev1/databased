@@ -1,0 +1,51 @@
+﻿1. вывести фамилию продавца, фамилию покупателя и сумму покупки между 700 и 2000 
+	
+	select salespeople.sname, customers.cname, orders.amt from salespeople, customers, orders where orders.amt > 700  and orders.amt < 2000
+AND Orders.cnum = Customers.cnum AND Orders.snum = Salespeople.snum group by orders.amt
+
+2. вывести фамилию продавца и сумму его покупки без комиссии
+	
+	SELECT salespeople.sname, (orders.amt * (1 - salespeople.comm)) FROM salespeople, orders WHERE orders.snum = salespeople.snum
+
+3.Вывести фамилию продавцов и соответствующих им фамилии покупателей.
+
+	SELECT Salespeople.sname, Customers.cname FROM Customers, Salespeople WHERE Salespeople.snum = Customers.snum
+
+4.Вывести фамилию продавцов и фамилию покупателей, которые из одного
+города (поле Название города так же вывести).
+
+	Развернуть Повторный запрос Изменить Анализировать Профилирование Закладка База данных : database Запрошенное время : 18:57:10
+SELECT Customers.cname, Salespeople.sname, Salespeople.city FROM Salespeople, Customers WHERE Salespeople.city = Customers.city
+
+5.Вывести поле дата, где комиссия продавца меньше 0.12 (поле Комиссия так
+же вывести).
+
+	select orders.odate, salespeople.comm from orders, salespeople where salespeople.comm < 0.12 and orders.snum = salespeople.snum
+
+6. Вывести поле Сумма заказа покупателя, у которого рейтинг больше 100 (поле
+Рейтинг так же вывести).
+
+	select orders.amt, customers.rating from orders, customers where customers.rating > 100 and orders.cnum = customers.cnum
+
+7. Вывести имя заказчика, у которого заказ совершен 10.03.1990 (поле Дата так
+же вывести).
+
+select customers.cname, orders.odate from customers, orders where orders.odate = '2021-03-10' and orders.cnum = customers.cnum
+
+8.Вывести имя покупателя, сумму его заказа и комиссионные продавца за
+10.04.1990 (поле Дата так же вывести).
+
+	select customers.cname, orders.amt, salespeople.comm, orders.odate from customers, orders, salespeople 
+where orders.odate = '2021-04-10' and orders.cnum = customers.cnum and orders.snum = salespeople.snum
+
+9. Вывести имя и рейтинг заказчиков, у которых сумма заказа больше 3000 и
+покупка совершена 10.03.1990 (поля Сумма заказа и Дата так же вывести).
+
+	select customers.cname, customers.rating, orders.amt, orders.odate from customers, orders 
+where orders.amt > 3000 and orders.odate = '2021-03-10' and orders.cnum = customers.cnum
+
+10. Вывести номера заказов, продавцы и заказчики которых живут в Сан Джосе
+(поля ФИО заказчика, ФИО продавца и Название города так же вывести).
+
+	select customers.cname, salespeople.sname, salespeople.city, orders.onum  from customers, orders, salespeople 
+where customers.city = 'San Jose' AND salespeople.city = 'San Jose' AND orders.cnum = customers.cnum AND customers.snum = salespeople.snum

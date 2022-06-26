@@ -1,0 +1,24 @@
+12
+
+1 Напишите запрос, который вывел бы имена Заказчиков, их рейтинг и среднюю стоимость заказа.
+	select customers.cname, customers.rating, round(avg(orders.amt), 2) 
+	FROM customers, orders where orders.cnum = customers.cnum group by customers.cname;
+
+2 Напишите запрос, который вывел бы имена Заказчиков из Рима, рейтинг которых ниже среднего.
+	select cname, city, rating from customers WHERE rating < (SELECT AVG (rating) 
+	FROM Customers) AND city = 'Rome' GROUP BY cname
+
+3 Напишите запрос, который выводит комиссионные (comm) всех Продавцов, обслуживавших  Заказчиков в Париже.
+	select salespeople.comm, salespeople.snum, customers.city 
+	from salespeople, customers where salespeople.snum = customers.snum and customers.city = 'Paris' group by snum;
+
+4 Написать запрос, который подсчитывает количество Заказов  с суммой приобретения ниже среднего, совершенных 10/03/1990.
+	select count(onum) from orders where amt < (SELECT AVG (amt) FROM orders) and odate = '2021-03-10'
+
+5 Написать запрос, который выводит Продавца, уникальный номер которого на 1000 меньше уникального номера Заказчика, проживающего в Берлине.
+	select salespeople.snum from salespeople 
+	where snum = (select cnum-1000 from customers where city = "Berlin") GROUP BY salespeople.snum
+
+6 Напишите запрос, который бы выбрал общую сумму всех приобретений в Заказах для каждого продавца, у которого эта общая сумма больше, чем сумма наибольшего Заказа в таблице.
+	select salespeople.sname, sum(orders.amt) from salespeople, orders 
+	where salespeople.snum = orders.snum group by salespeople.sname having sum(orders.amt) > (select max(amt) from orders)

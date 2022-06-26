@@ -1,0 +1,41 @@
+1 Сколько продавцов в таблице продавцы?
+	select count(*) as `Количество продавцов` from salespeople
+
+2 Из сеолькт городов продавцы?
+	select count(DISTINCT city) as 'Города продавцов' from salespeople
+
+3 Сколько строк в таблице заказчики? 
+	select count(*) as 'колтчество строк' from customers
+
+4 какой общий рейтинг заказчиков?
+	select sum(rating) as 'Общий рейтинг заказчиков' from customers
+
+5 На какуюю сумму сделаны все заказы?
+	select sum(amt) as 'Сумма заказов' from orders
+
+6 Какой средний рейтинг заказчиков?
+	select avg(rating) as 'Средний рейтинг заказчиков' from customers
+
+7 Какова средняя стоимость заказа 
+	select avg(amt) as 'Средняя стоимость заказа' from orders
+
+8 Какой минимальный рейтинг заказчика? 
+	select min(rating) as 'Минимальный рейтинг заказчика' from customers
+
+9 Какая максимальная комиссия продавца?
+	select max(comm) as 'Максимальная комиссия продавца' from salespeople
+
+10 Посчитайте общую стоимость заказа с учётом доставки
+	select onum, amt, Dostavka, amt + Dostavka as `Общая стоимость заказа` from orders 
+	
+11 Выведите из таблицы заказчики поля: Имя, Город, Рейтинг, уменьшенный в 50 раз
+	select cname, city, round(rating/50, 2) as 'rating' from customers
+
+12 Выведите из таблицы продавцы поля: Имя, Горрод, Синус комиссионных, увеличенный в 10 раз
+	select sname, city, SIN(comm) * 10 as `comm` from salespeople
+
+13 Выведите строковую константу, поясняющую поле 'cnum' из таблицы Заказчики, Номер заказчика, Имя заказчика, Город
+	select "customers" as ``, cnum, cname, city from customers
+
+14 Выведите строковые константы, поясняющие поля 'snum' и 'comm' 
+	select "salespeole id" as ``, snum, sname, city, "commission" as ``, comm from salespeople

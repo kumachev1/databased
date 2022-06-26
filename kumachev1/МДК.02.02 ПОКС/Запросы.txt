@@ -1,0 +1,32 @@
+SELECT DISTINCT(city) FROM customers;
+SELECT DISTINCT(rating) FROM customers;
+SELECT DISTINCT(comm) FROM orders;
+
+SELECT * FROM salespeople WHERE city = 'London';
+SELECT * FROM customers WHERE city = 'Rome';
+SELECT * FROM salespeople WHERE comm > 0.12;
+SELECT * FROM customers WHERE city = 'Rome';
+
+
+
+
+
+
+
+
+(7-ая практическая)
+
+SELECT COUNT(*) AS 'Количество работников' FROM salespeople;
+SELECT COUNT(DISTINCT city) AS 'Города продавцов' FROM salespeople;
+SELECT COUNT(*) AS 'Количество строк' FROM customers;
+SELECT SUM(rating) AS 'Общий рейтинг' FROM customers;
+SELECT ROUND(SUM(amt),2) AS 'Сумма заказов' FROM orders;
+SELECT ROUND(AVG(rating),3) AS 'Средний рейтинг' FROM customers;
+SELECT ROUND(AVG(amt),3) AS 'Средняя стоимость заказа' FROM orders;
+SELECT MIN(rating) AS 'Минимальный рейтинг заказчика' FROM customers;
+SELECT MAX(comm) AS 'Максимальная комиссия' FROM salespeople;
+SELECT ROUND(SUM(dostavka + amt),3) AS 'Общая стоимость доставки' FROM orders;
+SELECT cname 'Имя', city 'Город', rating * 50 'Рейтинг' FROM customers;
+SELECT sname 'Имя', city 'Город', ROUND(sin(comm)*10,2) 'Комиссионные' FROM salespeople;
+SELECT 'Номер', cnum, cname, 'Имя', city, 'Город' FROM  customers;
+SELECT 'Номер', snum, sname, city, 'Комиссионные', comm FROM salespeople;

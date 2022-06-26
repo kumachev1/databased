@@ -1,0 +1,14 @@
+1 Вывести из таблицы Заказы все значения полей у заказчика Hoffman.
+	select * from orders where cnum =(Select cnum from customers where cname = 'Hoffman')
+
+2 Вывести заказы продавца из New York.
+	select * from orders where snum = (select snum from salespeople where city = 'New York')
+
+3 Вывести заказчиков, у которых покупает  продавец Motika.
+	select * from customers where snum = (select snum from salespeople where sname = 'Motika')
+
+4 Вывести продавцов, которым делает поставки заказчик  Liu.
+	select * from salespeople where snum = (select snum from customers where cname = 'Liu' )
+
+5 Вывести покупки заказчика с рейтингом 100 и городом Rome.
+	select * from orders where cnum = (select cnum from customers where city = 'Rome' and rating = 100)

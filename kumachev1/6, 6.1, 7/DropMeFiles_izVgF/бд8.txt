@@ -1,0 +1,53 @@
+Практическая работа №8
+
+1 Напишите запрос, который сосчитал бы все суммы приобретений на 3 Октября.
+	select count(amt) from orders where odate='2021-03-10'
+
+2 Напишите запрос, который сосчитал бы число различных, отличных от NULL значений поля city в таблице Заказчиков.
+	select count(distinct city) from customers where city is not null
+
+3 Напишите запрос, который выбрал бы наименьшую сумму для каждого заказчика.
+	select cnum, min(amt) from orders group by cnumse
+
+4 Напишите запрос, который выбрал бы наименьшую сумму приобретений получаемую каждым продавцом каждый день.
+	select snum, odate, min(amt) from orders group by snum, odate order by snum
+
+5 Следующий пример показывает наименьшие Заказы для заказчика Cisneros, Grass и Clemens.
+	select customers.cname, min(orders.amt) from customers, orders group by customers.cname having customers.cname in ('Cisneros', 'Grass', 'Clemens')
+
+6 Напишите запрос, который бы выбирал заказчиков в алфавитном порядке, чьи имена начинаются с буквы G.
+	select cnum, cname from customers group by cname, cnum having cname like 'G%'
+
+7 Напишите запрос, который выбрал бы высшую оценку в каждом городе.
+	select distinct city, max(rating) from customers group by city
+
+8 Напишите запрос, который сосчитал бы число Продавцов, регистрирующих свои Заказы, за каждый день (если продавец имел более одного Заказа в данный день, он должен учитываться только один раз).
+	select distinct odate, count(distinct snum) from orders group by odate
+
+9 Напишите запрос, который сосчитал бы число Заказов за каждый день для каждого Продавца.
+	select distinct snum, odate, count(odate) from orders group by snum, odate order by snum
+
+
+
+Практическая работа №8.1
+
+1 Выведите названия всех заказчиков относительно рейтинга, т. е. по каждому рейтингу должны быть выведены те заказчики, которые к нему относятся.
+	select cname, rating from customers order by rating
+
+2 Выведите заказчиков, которых обслуживает конкретный продавец, т. е. по каждому продавцу должен быть выведен список заказчиков, с которыми он работает.
+	select snum, cname from customers order by snum
+
+3 Вывести из таблицы Продавцы поля Номер, Имя, Город упорядоченные по убыванию по полю 'sname'.
+	select snum, sname, city from salespeople order by sname desc
+
+4 Вывести из таблицы Заказчики поля Имя, Город, Рейтинг упорядоченные по возрастанию по полям 'rating' и 'cname'.
+	select cname, city, rating from customers order by rating asc, cname as
+
+5 Вывести из таблицы Продавцы поля Имя, Город, сгруппированные по полю Город, и упорядоченные по полю Имя.
+	select sname, city from salespeople group by city order by sname
+
+6 Вывести из таблицы Заказчики поля Имя, Город, Рейтинг, сгруппированные по 2-му столбцу.
+	select cname, city, rating from customers GROUP BY 2
+
+7 Вывести из таблицы Заказчики поля Город и количество рейтингов каждого города  упорядоченных по возрастанию. 
+	select city, count(rating) from customers group by city order by 2 ASC

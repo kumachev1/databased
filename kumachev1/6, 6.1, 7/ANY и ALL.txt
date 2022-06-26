@@ -1,0 +1,33 @@
+Операторы ANY и ALL в подзапросах
+
+1 Показать тех Продавцов и их города, которые проживают в тех же городах, что и Заказчики.
+
+	select salespeople.snum, salespeople.sname, salespeople.city
+	from salespeople
+	where salespeople.snum = any(select customers.snum from customers where salespeople.city = customers.city);
+
+2 Показать продавцов, у которых комиссионные выше чем у продавцов из Лондона.
+
+	SELECT snum, comm, city
+	from salespeople
+	where comm > all(select comm from salespeople WHERE city = 'London');
+
+3 Покажите заказы, которые дешевле стоимости заказов за 1990-04-10. (Запрос должен показать только те значения, которые ниже amt самого дешёвого за эту дату) 
+
+	SELECT onum, amt, odate 
+	FROM orders 
+	WHERE amt < all(SELECT amt FROM orders WHERE odate = '2021-04-10');
+
+4 Покажите номер продавца, у которого самая высокая суммарная стоимость заказов (суммарную стоимость заказа так же вывести).
+	
+	SELECT snum, sum(amt)
+	FROM orders
+	group by snum HAVING sum(amt) >= all(SELECT sum(amt) FROM orders group by snum);
+
+5 Покажите имя и номер продавца, у которого самая высокая суммарная стоимость заказов (суммарную стоимость заказа так же вывести).
+
+	SELECT salespeople.snum, salespeople.sname, sum(orders.amt)
+	FROM orders, salespeople
+	WHERE orders.snum = salespeople.snum
+	group by salespeople.snum 
+	HAVING sum(orders.amt) >= all(SELECT sum(orders.amt) FROM orders, salespeople WHERE orders.snum = salespeople.snum group by salespeople.snum);

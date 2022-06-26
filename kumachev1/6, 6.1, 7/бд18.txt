@@ -1,0 +1,40 @@
+Практическая работа №18
+Пользователи и привилегии
+
+
+1 Создать пользователя под именем ‘gruber_user’ и паролем ‘12345’
+
+	CREATE USER 'gruber_user'@'localhost' IDENTIFIED BY '12345'
+
+2 Дать права на выборку из таблицы orders и salespeople.
+
+	GRANT SELECT ON klimenko.orders TO 'gruber_user'@'localhost'
+	GRANT SELECT ON klimenko.salespeople TO 'gruber_user'@'localhost'
+
+3 Сделать выборку из таблицы salespeople
+
+	SELECT * FROM salespeople
+
+4 Дать право на вставку значений в таблицу orders
+
+	GRANT INSERT ON klimenko.orders TO 'gruber_user'@'localhost'
+
+5 Вставить строку в таблицу orders
+
+	INSERT INTO orders VALUES(3011, 1234.00, 3211, 'наличные', '2021-07-11', 2004, 1002 )
+
+6 Удалить право делать выборку из таблицы orders
+
+	REVOKE SELECT ON klimenko.orders FROM 'gruber_user'@'localhost'
+
+7 Дать пользователю право на обновление таблицы customers
+
+	GRANT UPDATE ON klimenko.customers to 'gruber_user'@'localhost'
+
+8 Убрать право на обновление таблицы customers;
+
+	REVOKE UPDATE ON klimenko.customers FROM 'gruber_user'@'localhost'
+
+9 Удалить пользователя ‘gruber_user’
+
+	DROP USER 'gruber_user'@'localhost'

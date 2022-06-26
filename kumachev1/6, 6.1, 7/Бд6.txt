@@ -1,0 +1,33 @@
+1) выведите города Заказчиков без повторений;
+	select distinct(city) from customers
+
+2) выведите имеющиеся рейтинги Заказчиков без повторений;
+	select distinct(rating) from customers
+
+3) выведите имеющиеся комиссионные Продавцов без повторений;
+	select distinct(comm) from salespeople
+
+
+4) выведите все поля из таблицы Продавцы при условии, что продавец из Лондона;
+	select * from salespeople where city = 'London'
+
+5) выведите все поля из таблицы Продавцы при условии, что комиссия продавца больше 0.12%;
+	select * from salespeople where comm > 0.12
+
+6) выведите все поля из таблицы Заказчики при условии, что заказчик из Рима;
+	select * from customers where city = 'Rome'
+
+
+7) выведите все поля из таблицы Заказчики при условии, что рейтинг заказчика 100 и 300;
+	select * from customers where rating = 100 or rating = 300
+
+
+8) выведите все поля из таблицы Заказы при условии, что заказ меньше 1000;
+	select * from orders where amt < 1000
+
+9) выведите все поля из таблицы Заказчики при условии, что заказчик из Рима с рейтингом 200;
+	select * from customers where city = 'Rome' and rating = 200
+
+
+10) выведите все поля из таблицы Заказчики при условии, что заказчик или из Берлина или с рейтингом 300.
+	select * from customers where city = 'Berlin' or rating = 300

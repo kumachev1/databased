@@ -1,0 +1,6 @@
+1) SELECT cname,rating,ROUND(AVG(amt)) FROM customers,orders WHERE customers.сnum=orders.cnum GROUP BY cname;
+2) SELECT rating,cname FROM customers WHERE rating<(SELECT AVG (rating) FROM Customers) AND city='Rome';
+3) SELECT DISTINCT snum_id,sname,comm FROM salespeople,customers WHERE snum_id=customers.snum AND customers.city='Paris';
+4) SELECT COUNT(onum) FROM orders WHERE amt<(SELECT AVG(amt) FROM orders) AND odate='2021-03-10';
+5) SELECT sname FROM salespeople WHERE snum_id=(SELECT cnum-1000 FROM Customers WHERE city='Berlin');
+6) SELECT snum, SUM(amt) AS sum_amt FROM orders GROUP BY snum HAVING sum_amt>(SELECT MAX(amt) FROM orders);
